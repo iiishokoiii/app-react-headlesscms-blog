@@ -1,61 +1,17 @@
-/* reset */
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,
-p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,
-samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,
-fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,
-article,aside,canvas,details,figcaption,figure,footer,header,
-hgroup,menu,nav,section,summary,time,mark,audio,video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: bottom;
-  background: transparent;
-  box-sizing: border-box;
-}
-body {
-  line-height: 1.5;
-}
-article,aside,details,figcaption,figure,footer,header,
-hgroup,menu,nav,section {
-  display: block;
-}
-ul {
-  list-style: none;
-}
-blockquote,q {
-  quotes: none;
-}
-blockquote:before,blockquote:after,
-q:before,q:after {
-  content: '';
-}
-a {
-  margin: 0;
-  padding: 0;
-  font-size: 100%;
-  vertical-align: bottom;
-  background: transparent;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-input,
-select {
-  vertical-align: middle;
-}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
 
 /* base */
 body {
   /* font-size: .15em; */
-  font-family: "游ゴシック Medium","Yu Gothic Medium","游ゴシック体","Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "sans-serif";
+  /* font-family: "游ゴシック Medium","Yu Gothic Medium","游ゴシック体","Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", "sans-serif"; */
+  font-family: 'Noto Sans JP', 'Noto Sans', serif;
   line-height: 1.5;
   color: #333;
 }
