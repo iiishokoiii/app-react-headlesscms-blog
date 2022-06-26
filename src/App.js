@@ -20,7 +20,7 @@ function App() {
         <Route path="/page/:pageid" element={<ListPage />} />
         <Route path="/category/:categoryid/page/:pageid" element={<ListPage />} />
         <Route path="/tag/:tagid/page/:pageid" element={<ListPage />} />
-        <Route path="/post/:id" element={<SinglePage />} />
+        <Route path="/post/:postid" element={<SinglePage />} />
       </Routes>
       <SideNav />
     </BrowserRouter>

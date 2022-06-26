@@ -1,34 +1,22 @@
 import styles from '../styles/singlepage.module.scss';
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from 'axios';
-import { endpoint, apikey } from "../config";
+import { endpoint, axiosOption } from "../config";
 
 
 function SinglePage() {
   const [blogData, changeBlogData] = useState([]);
   const params = useParams();
-
-  
+  const apiurl = endpoint + '/' + params.postid;
 
   // 初回レンダリング時にAjaxでデータ取得する
   useEffect(() => {
     // console.log(endpoint + '/' + params.id);
-    const apiurl = endpoint + '/' + params.id;
-    axios.get(apiurl, {
-      headers: {
-        'X-MICROCMS-API-KEY': apikey
-      }
-    }).then(res => {
+    axios.get(apiurl, axiosOption).then(res => {
       changeBlogData(res.data);
-      createMarkup(blogData.contents)
-      console.log(res.data);
     })
-  }, [])
-
-  function createMarkup(str) {
-    return {__html: str};
-  }
+  }, [apiurl])
 
   return (
     <div className={styles.content}>
