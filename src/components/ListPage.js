@@ -1,74 +1,86 @@
 import styles from '../styles/listpage.module.scss';
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { endpoint, axiosOption } from "../config";
 import Pagenation from './Pagenation';
 
 function ListPage() {
   const [blogList, changeBlogList] = useState([]);
-  const [pageCount, changePageCount] = useState(0);
   const params = useParams();
-  const itemCountPerPage = 3;
-  //API endpoint query setting
-  const setApiUrl = params => {
-    const page = params.pageid || '1';
-    const categoryid = params.categoryid || null;
-    let url = endpoint;
-    let query = {
-      fields: 'id,title,date,category,description,taglist',
-      filters: categoryid ? '&filters=category[contains]' + categoryid : '',
-      limit: itemCountPerPage,
-      offset: (page-1)*itemCountPerPage
-    }
-    Object.keys(query).forEach((key, idx) => {
-      url += idx === 0 ? '?' + key + '=' + query[key] : '&' + key + '=' + query[key];
-    })
-    return url;
-  }
-  let apiurl = setApiUrl(params);
+  const navigate = useNavigate();
+  const itemCountPerPage = 4;
+  const apiurl = endpoint + '?fields=id,title,date,category,description,taglist';
 
-  // paramsが更新されたらAjaxでデータ取得する
+  const currentPageIndex = !params.pageid ? 1 : Number(params.pageid);
+
   useEffect(() => {
-    // changeApiUrl(setApiUrl(params))
     axios.get(apiurl, axiosOption).then(res => {
-      console.log(res.data.totalCount);
-      let itemCount = res.data.totalCount;
-      let _pageCount = itemCount / itemCountPerPage;
-      changePageCount(_pageCount);
       changeBlogList(res.data.contents);
     })
-  }, [apiurl]);
+  }, []);
+
+  const categoryFilterdList = (list) => {
+    const _newList = !params.categoryid ? list : list.filter(item => item.category.find(_item => _item === params.categoryid));
+    return _newList;
+  }
+  const renderList = (list) => {
+    const _currentPageIndex = !params.pageid ? 1 : params.pageid;
+    const itemRangeMin = (_currentPageIndex - 1) * itemCountPerPage;
+    const itemRangeMax = _currentPageIndex * itemCountPerPage - 1;
+    return categoryFilterdList(list).filter((item, i) => (i >= itemRangeMin && i <= itemRangeMax));
+  }
+  const handleNavigate = (pageid) => () => {
+    const url = (params.categoryId ? '/category/' + params.categoryId : '') +'/page/' + pageid + '/';
+    navigate(url);
+  }
+  const itemCount = (list) => {
+    return list.length || 0;
+  }
 
   return (
     <>
       <div className={styles.content}>
         {params.categoryid ? <h2>{params.categoryid}</h2> : ''}
+        <p>全{itemCount(categoryFilterdList(blogList))}件</p>
+
         <ul className={styles.list}>
-        {blogList.map((item, i) => (
+        {renderList(blogList).map((item, i) => (
           <li
           className={styles.list__item}
           key={i}
           >
           <Link to={`/post/${item.id}`}>
             <p className={styles.ttl}>{item.title}</p>
-            <ul className={styles.category}>
-            {item.category.map((elm, j) => (
-              <li
-                className={styles.category__item}
-                key={j}
-              >{elm}</li>
-            ))}
-            </ul>
+            <CategoryTag category={item.category} />
           </Link>
           </li>
         ))}
         </ul>
-        <hr />  
-        <Pagenation totalCount={pageCount} />
+
+        <Pagenation
+          itemCount={itemCount(categoryFilterdList(blogList))}
+          itemCountPerPage={itemCountPerPage}
+          currentIndex={currentPageIndex}
+          onClick={handleNavigate}
+        />
       </div>
     </>
   );
+}
+
+function CategoryTag(props) {
+  const { category } = props;
+  return (
+    <ul className={styles.category}>
+      {category.map((elm, j) => (
+        <li
+          className={styles.category__item}
+          key={j}
+        >{elm}</li>
+      ))}
+    </ul>
+  )
 }
 
 export default ListPage;
