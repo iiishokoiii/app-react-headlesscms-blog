@@ -1,0 +1,24 @@
+@use '_lib/_mixin' as m;
+.wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+// .main {
+//   width: 70%;
+// }
+// .aside {
+//   width: 30%;
+// }
+@include m.tablet {
+  .wrap {
+    flex-direction: row;
+  }
+  .main {
+    width: 70%;
+  }
+  .aside {
+    width: 30%;
+  }
+}

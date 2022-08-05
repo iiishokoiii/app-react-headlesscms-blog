@@ -1,18 +1,61 @@
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { cagtegoryList } from "../config";
+import axios from 'axios';
+import { endpoint, axiosOption } from "../config";
 
 export default function SideNav() {
+
+  const [blogList, changeBlogList] = useState([]);
+  const apiurl = endpoint + '?fields=date,category';
+
+  useEffect(() => {
+    axios.get(apiurl, axiosOption).then(res => {
+      changeBlogList(res.data.contents);
+    })
+  }, [apiurl]);
+
+  const cagtegoryList = list => {
+    let _newList = []
+    list.forEach(item => {
+      item.category.forEach(_item => {
+        _newList.push(_item);
+      })
+    })
+    return _newList.filter((item, idx, arr) => arr.indexOf(item) === idx);
+  }
+
+  const archiveList = list => {
+    // const _list = list.map(item => item.date[0])
+    let _newList = list.map(item => {
+      let dateArr = item.date.split('T')[0].split('-');
+      return dateArr[0] + '-' + dateArr[1];
+    })
+    return _newList.filter((item, idx, arr) => arr.indexOf(item) === idx);
+  }
+
+
   return (
-    <ul>
-    {cagtegoryList.map((item, i) => (
-    <li
-    key={i}
-    >
-    <Link to={`/category/${item}/page/1`}>
-      <p>{item}</p>
-    </Link>
-    </li>
-    ))}
-    </ul>
+    <>
+      <p>カテゴリー一覧</p>
+      <ul>
+      {cagtegoryList(blogList).map((item, i) => (
+        <li key={i}>
+        <Link to={`/category/${item}/page/1`}>
+          <p>{item}</p>
+        </Link>
+        </li>
+      ))}
+      </ul>
+      <p>アーカイブ</p>
+      <ul>
+      {archiveList(blogList).map((item, i) => (
+        <li key={i}>
+        <Link to={`/archive/${item}/page/1`}>
+          <p>{item}</p>
+        </Link>
+        </li>
+      ))}
+      </ul>
+    </>
   )
 }

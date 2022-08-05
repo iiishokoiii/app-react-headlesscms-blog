@@ -5,9 +5,3 @@ export const axiosOption = {
     'X-MICROCMS-API-KEY': apikey
   }
 }
-
-export const cagtegoryList = [
-  'category1',
-  'category2',
-  'category3'
-]

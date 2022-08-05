@@ -1,3 +1,4 @@
+import styles from './styles/app.module.scss';
 import {
   BrowserRouter,
   Routes,
@@ -15,14 +16,21 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<ListPage />} />
-        <Route path="/page/:pageid" element={<ListPage />} />
-        <Route path="/category/:categoryid/page/:pageid" element={<ListPage />} />
-        <Route path="/tag/:tagid/page/:pageid" element={<ListPage />} />
-        <Route path="/post/:postid" element={<SinglePage />} />
-      </Routes>
-      <SideNav />
+      <div className={styles.wrap}>
+        <main className={styles.main}>
+          <Routes>
+            <Route path="/" element={<ListPage />} />
+            <Route path="/page/:pageid" element={<ListPage />} />
+            <Route path="/category/:categoryid/page/:pageid" element={<ListPage />} />
+            <Route path="/tag/:tagid/page/:pageid" element={<ListPage />} />
+            <Route path="/archive/:date/page/:pageid" element={<ListPage />} />
+            <Route path="/post/:postid" element={<SinglePage />} />
+          </Routes>
+        </main>
+        <aside className={styles.aside}>
+          <SideNav />
+        </aside>
+      </div>
     </BrowserRouter>
   );
 }
