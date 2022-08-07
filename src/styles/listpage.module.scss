@@ -1,8 +1,12 @@
 .content {
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .list {
   color: #fff;
+  min-height: 700px;
 }
 .listItem {
   margin-top: 10px;
@@ -30,7 +34,7 @@
       margin-bottom: 12px;
     }
     &__foot {
-      
+
     }
   }
   &__ttl {
