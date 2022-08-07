@@ -16,7 +16,7 @@ export default function SideNav() {
   const cagtegoryList = (list) => {
     const _newList = [];
     list.forEach((item) => {
-      item.category.forEach((_item) => {
+      item.category.forEach((_item, idx) => {
         _newList.push(_item);
       });
     });
@@ -36,8 +36,8 @@ export default function SideNav() {
     <>
       <p>カテゴリー一覧</p>
       <ul>
-        {cagtegoryList(blogList).map((item) => (
-          <li key={item.id}>
+        {cagtegoryList(blogList).map((item, idx) => (
+          <li key={idx}>
             <Link to={`/category/${item}/page/1`}>
               <p>{item}</p>
             </Link>
@@ -46,8 +46,8 @@ export default function SideNav() {
       </ul>
       <p>アーカイブ</p>
       <ul>
-        {archiveList(blogList).map((item) => (
-          <li key={item.id}>
+        {archiveList(blogList).map((item, idx) => (
+          <li key={idx}>
             <Link to={`/archive/${item}/page/1`}>
               <p>{item}</p>
             </Link>

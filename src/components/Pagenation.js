@@ -3,16 +3,9 @@ import React from 'react';
 function Pagenation(props) {
   const { itemCount, itemCountPerPage, currentIndex, onClick } = props;
   const rangeMax = Math.ceil(itemCount / itemCountPerPage);
-  const pageIndexArr = (_rangeMax) => {
-    const arr = [];
-    // eslint-disable-next-line no-plusplus
-    for (let i = 1; i <= _rangeMax; i++) {
-      arr.push(i);
-    }
-    return arr;
+  const pageIndexArr = (rangeMax) => {
+    return [...Array(rangeMax)].map((_, idx) => idx + 1);
   };
-  // console.log('currentIndex');
-  // console.log(currentIndex);
   return (
     <ul>
       {pageIndexArr(rangeMax).map((item) => (
