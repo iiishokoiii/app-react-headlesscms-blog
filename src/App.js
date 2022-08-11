@@ -12,22 +12,30 @@ function App() {
     <BrowserRouter>
       <Header />
       <div className={styles.wrap}>
-        <main className={styles.main}>
-          <Routes>
-            <Route path="/" element={<ListPage />} />
-            <Route path="/page/:pageid" element={<ListPage />} />
-            <Route
-              path="/category/:categoryid/page/:pageid"
-              element={<ListPage />}
-            />
-            <Route path="/tag/:tagid/page/:pageid" element={<ListPage />} />
-            <Route path="/archive/:date/page/:pageid" element={<ListPage />} />
-            <Route path="/post/:postid" element={<SinglePage />} />
-          </Routes>
-        </main>
-        <aside className={styles.aside}>
-          <SideNav />
-        </aside>
+        <div className={styles.content}>
+          <main className={styles.main}>
+            <Routes>
+              <Route path="/" element={<ListPage />} />
+              <Route path="/page/:pageid" element={<ListPage />} />
+              <Route
+                path="/category/:categoryid/page/:pageid"
+                element={<ListPage />}
+              />
+              <Route path="/tag/:tagid/page/:pageid" element={<ListPage />} />
+              <Route
+                path="/archive/:date/page/:pageid"
+                element={<ListPage />}
+              />
+              <Route path="/post/:postid" element={<SinglePage />} />
+            </Routes>
+          </main>
+          <aside className={styles.aside}>
+            <SideNav />
+          </aside>
+        </div>
+        <footer className={styles.footer}>
+          <p>&copy; test blog</p>
+        </footer>
       </div>
     </BrowserRouter>
   );
