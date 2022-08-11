@@ -1,0 +1,48 @@
+@use '_lib/vars' as v;
+@use '_lib/_mixin' as m;
+
+.content {
+  padding-top: 40px;
+}
+.listwrap {
+  // border-radius: 4px;
+  // padding: 12px 24px 24px;
+  @include m.tablet {
+    &:not(:first-of-type) {
+      margin-top: 36px;
+    }
+  }
+}
+.ttl {
+  background-color: #999;
+  color: #fff;
+  padding: 8px;
+  @include m.tablet {
+    background-color: #efefef;
+    color: #333;
+    margin-bottom: 12px;
+    padding: 4px 8px;
+    border-left: 4px solid #ccc;
+  }
+}
+.list {
+  // border: 1px solid #ccc;
+}
+.item {
+  padding: 12px 8px;
+  &::before {
+    display: inline-block;
+    width: 1em;
+    padding-right: 0.5em;
+    content : '・';
+  }
+  &:not(:first-of-type) {
+    border-top: 1px solid #ccc;
+  }
+  @include m.tablet {
+    &:not(:first-of-type) {
+      margin-top: 8px;
+      border-top: none;
+    }
+  }
+}

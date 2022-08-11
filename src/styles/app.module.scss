@@ -1,18 +1,30 @@
 @use '_lib/_mixin' as m;
 .wrap {
+  background: #efefef;
+  padding: 40px 0;
+}
+.content {
+  background: #fff;
   display: flex;
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.main {
+  padding: 12px;
 }
 @include m.tablet {
-  .wrap {
+  .content {
     flex-direction: row;
   }
   .main {
     width: 70%;
+    padding: 30px;
   }
   .aside {
     width: 30%;
+    padding: 30px;
   }
 }

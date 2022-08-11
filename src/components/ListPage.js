@@ -74,7 +74,7 @@ function ListPage() {
     <div className={styles.content}>
       {params.categoryid ? <h2>{params.categoryid}</h2> : ''}
       {params.date ? <h2>{params.date}</h2> : ''}
-      <p>全{itemCount(categoryFilterdList(blogList))}件</p>
+      <p className={styles.count}>全{itemCount(categoryFilterdList(blogList))}件</p>
 
       <ul className={styles.list}>
         {renderList(blogList).map((item) => (

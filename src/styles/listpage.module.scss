@@ -1,8 +1,11 @@
 .content {
-  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.count {
+  text-align: right;
+  color: #666;
 }
 .list {
   color: #fff;
