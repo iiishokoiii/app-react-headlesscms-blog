@@ -1,8 +1,20 @@
+@use '_lib/_mixin' as m;
+
 .content {
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.count {
+  text-align: right;
+  color: #666;
 }
 .list {
   color: #fff;
+  min-height: auto;
+  @include m.tablet {
+    min-height: 700px;
+  }
 }
 .listItem {
   margin-top: 10px;
@@ -10,9 +22,13 @@
   border-top: 1px dotted #ccc;
   a {
     color: #333;
-    transition: opacity 0.3s;
     &:hover {
-      opacity: 0.8;
+      .listItem__txtarea {
+        opacity: 0.7;
+      }
+      img {
+        transform: scale(1.2);
+      }
     }
   }
   &__wrap {
@@ -20,24 +36,36 @@
   }
   &__imgarea {
     width: 30%;
+    overflow: hidden;
+    img {
+      transition: transform 0.3s;
+    }
   }
   &__txtarea {
     width: 70%;
-    padding: 0 20px;
+    padding-left: 20px;
+    transition: opacity 0.3s;
     &__head {
       display: flex;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
     }
     &__foot {
-      
+
     }
   }
   &__ttl {
-    font-size: 20px;
+    font-size: 16px;
+    @include m.tablet {
+      font-size: 20px;
+    }
   }
   &__description {
-    font-size: 14px;
+    font-size: 12px;
+    @include m.tablet {
+      font-size: 14px;
+    }
   }
 }
 .category {
@@ -45,9 +73,13 @@
 }
 .categoryItem {
   font-size: 12px;
-  padding: 2px 12px;
+  padding: 0 12px;
   display: inline-block;
-  border: 1px solid #333;
+  background: #999;
+  color: #fff;
   border-radius: 2px;
-  margin-right: 8px;;
+  margin-right: 8px;
+  @include m.tablet {
+    padding: 2px 12px;
+  }
 }

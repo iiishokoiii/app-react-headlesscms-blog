@@ -74,7 +74,7 @@ function ListPage() {
     <div className={styles.content}>
       {params.categoryid ? <h2>{params.categoryid}</h2> : ''}
       {params.date ? <h2>{params.date}</h2> : ''}
-      <p>全{itemCount(categoryFilterdList(blogList))}件</p>
+      <p className={styles.count}>全{itemCount(categoryFilterdList(blogList))}件</p>
 
       <ul className={styles.list}>
         {renderList(blogList).map((item) => (
@@ -91,6 +91,7 @@ function ListPage() {
                 </div>
                 <div className={styles.listItem__txtarea}>
                   <div className={styles.listItem__txtarea__head}>
+                    <p className={styles.listItem__ttl}>{item.title}</p>
                     <ul className={styles.category}>
                       {item.category.map((elm) => (
                         <li className={styles.categoryItem} key={item.id}>
@@ -98,7 +99,6 @@ function ListPage() {
                         </li>
                       ))}
                     </ul>
-                    <p className={styles.listItem__ttl}>{item.title}</p>
                   </div>
                   <p className={styles.listItem__description}>
                     {item.description}
