@@ -1,15 +1,12 @@
-//media-query
-$bp-sp: 561px;
-$bp-tablet: 961px;
-$bp-pc-wide: 1400px;
+@use '_vars' as v;
 
 @mixin tablet {
-  @media screen and (min-width: $bp-sp) {
+  @media screen and (min-width: v.$bp-sp) {
     @content;
   }
 }
 @mixin pc {
-  @media screen and (min-width: $bp-tablet) {
+  @media screen and (min-width: v.$bp-tablet) {
     @content;
   }
 }
