@@ -1,17 +1,26 @@
+@use '_lib/_mixin' as m;
+
 .header {
   background: #fff;
-  padding: 10px;
   color: #fff;
 }
 .ttl {
   font-size: 30px;
   text-align: center;
+  padding: 20px 0;
   a {
     color: #333;
   }
 }
 .nav {
   background: #333;
+}
+.list {
+  display: flex;
+  justify-content: space-around;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
 
